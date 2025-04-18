@@ -5,7 +5,7 @@ async function enviarPergunta() {
   respostaDiv.textContent = "Consultando o Mestre dos Produtos...";
 
   try {
-    const response = await fetch("https://SEU-BACKEND.onrender.com/chat", {
+    const response = await fetch("https://mestre-dos-produtos-api.onrender.com/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question: pergunta })
