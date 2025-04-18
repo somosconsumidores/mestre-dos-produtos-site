@@ -2,19 +2,21 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mestre dos Produtos</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <h1>🧠 Mestre dos Produtos</h1>
-    <p>Descubra agora o melhor, o mais barato e a escolha certa.</p>
+    <p>Descubra o melhor produto para você — baseado em evidências, preço e reviews reais.</p>
 
-    <textarea id="question" placeholder="O que você quer comprar?"></textarea>
-    <button onclick="enviarPergunta()">Perguntar ao Mestre</button>
+    <div class="chat-box" id="chat-box"></div>
 
-    <div id="resposta" class="resposta"></div>
+    <div class="input-area">
+      <textarea id="question" placeholder="O que você quer comprar?" rows="3"></textarea>
+      <button onclick="enviarPergunta()">Perguntar</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
