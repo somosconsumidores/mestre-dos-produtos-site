@@ -1,9 +1,16 @@
+const historicoChat = [
+  {
+    role: "system",
+    content: `Você é o Mestre dos Produtos, especialista em testes e comparações. Sempre mantenha o foco no produto mencionado inicialmente.`
+  }
+];
+
 async function enviarPergunta() {
   const pergunta = document.getElementById("question").value.trim();
   const chatBox = document.getElementById("chat-box");
   if (!pergunta) return;
 
-  // Adiciona mensagem do usuário no chat
+  // Exibe a pergunta do usuário no chat
   chatBox.innerHTML += `
     <div class="text-right">
       <div class="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-xl max-w-lg text-sm">
@@ -11,6 +18,9 @@ async function enviarPergunta() {
       </div>
     </div>
   `;
+
+  // Adiciona ao histórico
+  historicoChat.push({ role: "user", content: pergunta });
 
   // Loading do bot
   const id = `resposta-${Date.now()}`;
@@ -21,26 +31,27 @@ async function enviarPergunta() {
       </div>
     </div>
   `;
-
-  // Limpa o campo
   document.getElementById("question").value = "";
 
   try {
     const res = await fetch("https://mestre-dos-produtos-api.onrender.com/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question: pergunta })
+      body: JSON.stringify({ messages: historicoChat })
     });
 
     const data = await res.json();
     const resposta = data.response || "⚠️ O Mestre não conseguiu responder.";
 
-    // 👉 Aqui está a parte essencial: renderiza HTML com formatação
+    // Mostra resposta renderizada (interpreta HTML)
     document.getElementById(id).innerHTML = `
       <div class="inline-block bg-white border border-gray-200 p-4 rounded-xl text-sm max-w-lg shadow leading-relaxed">
         ${resposta}
       </div>
     `;
+
+    // Adiciona ao histórico
+    historicoChat.push({ role: "assistant", content: resposta });
   } catch (err) {
     document.getElementById(id).innerHTML = `
       <div class="inline-block bg-red-100 text-red-800 px-4 py-2 rounded-xl text-sm max-w-lg">
@@ -49,6 +60,5 @@ async function enviarPergunta() {
     `;
   }
 
-  // Rola para o final do chat automaticamente
   chatBox.scrollTop = chatBox.scrollHeight;
 }
