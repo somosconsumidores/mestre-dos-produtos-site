@@ -3,18 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mestre dos Produtos</title>
+  <title>Assistente Consumo Inteligente</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>🧠 Mestre dos Produtos</h1>
-    <p>Descubra o melhor produto para você — baseado em evidências, preço e reviews reais.</p>
+    <h1>🧠 Assistente Consumo Inteligente</h1>
+    <p>Envie sua dúvida ou uma foto do produto (ou código de barras) para análise.</p>
 
     <div class="chat-box" id="chat-box"></div>
 
     <div class="input-area">
       <textarea id="question" placeholder="O que você quer comprar?" rows="3"></textarea>
+
+      <!-- NOVO BLOCO: Upload de imagem -->
+      <label for="imagemInput" class="file-label">📷 Enviar foto do produto ou código de barras:</label>
+      <input type="file" id="imagemInput" accept="image/*" />
+
       <button onclick="enviarPergunta()">Perguntar</button>
     </div>
   </div>
