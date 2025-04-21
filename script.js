@@ -1,35 +1,30 @@
-async function enviarPergunta() {
-  const pergunta = document.getElementById("question").value.trim();
-  const chatBox = document.getElementById("chat-box");
+const backendUrl = "https://mestre-dos-produtos-api.onrender.com/chat";
 
-  if (!pergunta) return;
+async function sendMessage() {
+  const input = document.getElementById("input");
+  const chat = document.getElementById("chat");
+  const message = input.value.trim();
+  if (!message) return;
 
-  // Exibe a pergunta do usuário
-  const userMsg = document.createElement("div");
-  userMsg.className = "chat-msg user-msg";
-  userMsg.textContent = pergunta;
-  chatBox.appendChild(userMsg);
-
-  // Exibe loading
-  const botMsg = document.createElement("div");
-  botMsg.className = "chat-msg bot-msg";
-  botMsg.textContent = "⏳ Consultando o Mestre dos Produtos...";
-  chatBox.appendChild(botMsg);
-
-  document.getElementById("question").value = "";
+  // Adiciona a mensagem do usuário no chat
+  chat.innerHTML += `<div class="message user">Você: ${message}</div>`;
+  input.value = "";
+  chat.scrollTop = chat.scrollHeight;
 
   try {
-    const response = await fetch("https://mestre-dos-produtos-api.onrender.com/chat", {
+    const res = await fetch(backendUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question: pergunta })
+      body: JSON.stringify({ message }),
     });
 
-    const data = await response.json();
-    botMsg.textContent = data.response || "⚠️ Não foi possível obter resposta.";
+    const data = await res.json();
+    const reply = data.reply || "Erro: nenhuma resposta recebida.";
+    
+    // Adiciona a resposta do assistente no chat
+    chat.innerHTML += `<div class="message bot">Assistente: ${reply}</div>`;
+    chat.scrollTop = chat.scrollHeight;
   } catch (err) {
-    botMsg.textContent = "❌ Erro ao consultar o Mestre. Verifique a conexão com o backend.";
+    chat.innerHTML += `<div class="message bot">Erro de rede: ${err.message}</div>`;
   }
-
-  chatBox.scrollTop = chatBox.scrollHeight;
 }
