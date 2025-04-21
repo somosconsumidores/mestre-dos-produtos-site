@@ -1,7 +1,9 @@
 const historicoChat = [
   {
     role: "system",
-    content: `Você é o Mestre dos Produtos, especialista em testes e comparações. Sempre mantenha o foco no produto mencionado inicialmente.`
+    content: `Você é o Mestre dos Produtos, especialista em testes e comparações de produtos.
+Sempre mantenha o foco no produto citado inicialmente pelo usuário.
+Responda com tabelas, selos, Score Mestre e links reais de compra sempre que possível.`
   }
 ];
 
@@ -10,7 +12,7 @@ async function enviarPergunta() {
   const chatBox = document.getElementById("chat-box");
   if (!pergunta) return;
 
-  // Exibe a pergunta do usuário no chat
+  // Exibe a pergunta do usuário
   chatBox.innerHTML += `
     <div class="text-right">
       <div class="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-xl max-w-lg text-sm">
@@ -19,10 +21,9 @@ async function enviarPergunta() {
     </div>
   `;
 
-  // Adiciona ao histórico
   historicoChat.push({ role: "user", content: pergunta });
 
-  // Loading do bot
+  // Exibe loading
   const id = `resposta-${Date.now()}`;
   chatBox.innerHTML += `
     <div id="${id}" class="text-left">
@@ -31,6 +32,7 @@ async function enviarPergunta() {
       </div>
     </div>
   `;
+
   document.getElementById("question").value = "";
 
   try {
@@ -43,14 +45,12 @@ async function enviarPergunta() {
     const data = await res.json();
     const resposta = data.response || "⚠️ O Mestre não conseguiu responder.";
 
-    // Mostra resposta renderizada (interpreta HTML)
     document.getElementById(id).innerHTML = `
       <div class="inline-block bg-white border border-gray-200 p-4 rounded-xl text-sm max-w-lg shadow leading-relaxed">
         ${resposta}
       </div>
     `;
 
-    // Adiciona ao histórico
     historicoChat.push({ role: "assistant", content: resposta });
   } catch (err) {
     document.getElementById(id).innerHTML = `
