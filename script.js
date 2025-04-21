@@ -1,35 +1,27 @@
-async function enviarPergunta() {
-  const pergunta = document.getElementById("question").value.trim();
-  const chatBox = document.getElementById("chat-box");
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mestre dos Produtos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🧠 Asisstente Consumo Inteligente</h1>
+    <p>Descubra o melhor produto para você — baseado em evidências, preço e reviews reais.</p>
 
-  if (!pergunta) return;
+    <div class="chat-box" id="chat-box"></div>
 
-  // Exibe a pergunta do usuário
-  const userMsg = document.createElement("div");
-  userMsg.className = "chat-msg user-msg";
-  userMsg.textContent = pergunta;
-  chatBox.appendChild(userMsg);
+    <div class="input-area">
+      <textarea id="question" placeholder="O que você quer comprar?" rows="3"></textarea>
+      <button onclick="enviarPergunta()">Perguntar</button>
+    </div>
 
-  // Exibe loading
-  const botMsg = document.createElement("div");
-  botMsg.className = "chat-msg bot-msg";
-  botMsg.textContent = "⏳ Consultando o Mestre dos Produtos...";
-  chatBox.appendChild(botMsg);
+    <!-- ✅ Container onde a tabela será inserida -->
+    <div id="tabela-comparativa-container"></div>
+  </div>
 
-  document.getElementById("question").value = "";
-
-  try {
-    const response = await fetch("https://mestre-dos-produtos-api.onrender.com/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question: pergunta })
-    });
-
-    const data = await response.json();
-    botMsg.textContent = data.response || "⚠️ Não foi possível obter resposta.";
-  } catch (err) {
-    botMsg.textContent = "❌ Erro ao consultar o Mestre. Verifique a conexão com o backend.";
-  }
-
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
+  <script src="script.js"></script>
+</body>
+</html>
