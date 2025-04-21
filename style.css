@@ -1,3 +1,7 @@
+/* ---------------------- */
+/* ESTILOS DO LAYOUT BASE */
+/* ---------------------- */
+
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -10,13 +14,22 @@ body {
   background: #fff;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 h1 {
   font-size: 2rem;
   margin-bottom: 10px;
 }
+
+p {
+  color: #475569;
+  margin-bottom: 20px;
+}
+
+/* -------------------- */
+/* ÁREA DO CHAT         */
+/* -------------------- */
 
 .chat-box {
   min-height: 200px;
@@ -45,6 +58,10 @@ h1 {
   color: #0f172a;
 }
 
+/* -------------------- */
+/* INPUT DO USUÁRIO     */
+/* -------------------- */
+
 .input-area {
   display: flex;
   flex-direction: column;
@@ -57,6 +74,7 @@ textarea {
   font-size: 1em;
   border-radius: 6px;
   border: 1px solid #cbd5e1;
+  resize: vertical;
 }
 
 button {
@@ -73,4 +91,91 @@ button {
 
 button:hover {
   background-color: #0284c7;
+}
+
+/* ---------------------- */
+/* TABELA COMPARATIVA     */
+/* ---------------------- */
+
+.tabela-comparativa {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.98rem;
+  margin: 25px 0 0 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+.tabela-comparativa th,
+.tabela-comparativa td {
+  border: 1px solid #e2e8f0;
+  padding: 12px 10px;
+  text-align: left;
+}
+
+.tabela-comparativa th {
+  background-color: #f1f5f9;
+  font-weight: bold;
+  color: #1e293b;
+  letter-spacing: 0.03em;
+}
+
+.tabela-comparativa tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.tabela-comparativa tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+/* ---------------------- */
+/* SELOS DE AVALIAÇÃO     */
+/* ---------------------- */
+
+.selo {
+  font-size: 0.8em;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 8px;
+  display: inline-block;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  margin-right: 4px;
+  margin-top: 2px;
+}
+
+.selo.melhor {
+  background-color: #22c55e;
+  color: #fff;
+}
+
+.selo.barato {
+  background-color: #0ea5e9;
+  color: #fff;
+}
+
+.selo.recomendado {
+  background-color: #fb923c;
+  color: #fff;
+}
+
+/* ---------------------- */
+/* RESPONSIVIDADE         */
+/* ---------------------- */
+
+@media (max-width: 600px) {
+  .tabela-comparativa th,
+  .tabela-comparativa td {
+    padding: 8px 5px;
+    font-size: 0.93rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  button {
+    width: 100%;
+  }
 }
