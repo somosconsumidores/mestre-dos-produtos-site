@@ -1,4 +1,4 @@
-/* Estilização para tabelas geradas pelo ChatGPT */
+/* Tabelas geradas pelo GPT */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -8,17 +8,17 @@ table {
 
 table th,
 table td {
-  border: 1px solid #d1d5db; /* Tailwind's gray-300 */
+  border: 1px solid #d1d5db;
   padding: 8px;
   text-align: left;
 }
 
 table th {
-  background-color: #f3f4f6; /* Tailwind's gray-100 */
+  background-color: #f3f4f6;
   font-weight: 600;
 }
 
-/* Estilização dos selos */
+/* Selos de destaque */
 .selo {
   padding: 4px 8px;
   border-radius: 9999px;
@@ -28,25 +28,13 @@ table th {
 }
 
 .selo.melhor {
-  background-color: #16a34a; /* green-600 */
+  background-color: #16a34a; /* verde */
 }
 
 .selo.barato {
-  background-color: #eab308; /* yellow-500 */
+  background-color: #eab308; /* amarelo */
 }
 
 .selo.recomendado {
-  background-color: #2563eb; /* blue-600 */
-}
-
-/* Scroll suave no chat */
-#chat-box {
-  max-height: 70vh;
-  overflow-y: auto;
-  scroll-behavior: smooth;
-}
-
-/* Fonte opcional personalizada */
-body {
-  font-family: 'Inter', sans-serif;
+  background-color: #2563eb; /* azul */
 }
