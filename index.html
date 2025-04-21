@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mestre dos Produtos</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-gray-50 text-gray-900">
-    <div class="max-w-2xl mx-auto p-4 min-h-screen flex flex-col">
-      <h1 class="text-3xl font-bold mb-2">🧠 Mestre dos Produtos</h1>
-      <p class="mb-4 text-sm text-gray-600">
-        Descubra o melhor produto com base em evidências reais, preço e reviews de usuários.
-      </p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mestre dos Produtos</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+  <div class="max-w-3xl mx-auto p-4 min-h-screen flex flex-col">
+    <h1 class="text-3xl font-bold mb-2">🧠 Mestre dos Produtos</h1>
+    <p class="mb-4 text-sm text-gray-600">
+      Descubra o melhor produto com base em evidências, preço e avaliações reais.
+    </p>
 
-      <div id="chat-box" class="flex-1 overflow-y-auto space-y-4 mb-4"></div>
+    <div id="chat-box" class="flex-1 overflow-y-auto space-y-4 mb-4 border p-4 rounded-lg bg-white shadow-md max-h-[70vh]"></div>
 
-      <div class="flex gap-2">
-        <textarea
-          id="question"
-          rows="2"
-          placeholder="O que você quer comprar?"
-          class="flex-1 border rounded-xl p-3 text-sm shadow-sm focus:outline-none focus:ring focus:border-blue-400 resize-none"
-        ></textarea>
-        <button
-          onclick="enviarPergunta()"
-          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm"
-        >
-          Perguntar
-        </button>
-      </div>
+    <div class="flex gap-2">
+      <textarea
+        id="question"
+        rows="2"
+        placeholder="O que você quer comprar?"
+        class="flex-1 border rounded-xl p-3 text-sm shadow-sm focus:outline-none focus:ring focus:border-blue-400 resize-none"
+      ></textarea>
+      <button
+        onclick="enviarPergunta()"
+        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm"
+      >
+        Perguntar
+      </button>
     </div>
+  </div>
 
-    <script src="script.js"></script>
-  </body>
+  <script src="script.js"></script>
+</body>
 </html>
